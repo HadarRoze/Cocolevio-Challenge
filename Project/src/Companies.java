@@ -16,7 +16,7 @@ public class Companies {
 		name = n;
 	}
 	
-	Companies subtract(Companies f, Companies s) {
+	Companies subtract(Companies f, Companies s) { //returns a company that is the difference between to companies. Notice that the resultant 'name' is actually the sum. This should only be used by database
 		Companies temp = new Companies(0,0,"");
 		temp.quant=f.quant-s.quant;
 		temp.prc=f.prc-s.prc;
@@ -24,8 +24,18 @@ public class Companies {
 		return temp;
 	}
 	
-	void printCompany(){
+	void printCompany(){ //prints company in a very straight forward way. This is mainly for debugging.
 		System.out.print(name+ " amount: "+quant+" price: "+prc);
+	}
+	
+	void specialPrintCompany(){//prints companies in a way that specifically fits my solution 
+		String sol = "";
+		for(int x=0; x<10; x++) {
+			char c = (char)(65+x);
+			if(!name.contains(Character.toString(c)))
+				sol+=c;
+		}
+		System.out.println("Accept offers from companies: "+sol+", which would sell "+quant+ " units for "+prc);
 	}
 }
 

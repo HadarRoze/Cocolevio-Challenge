@@ -3,11 +3,12 @@
 //Last Modified: 1/7/2018
 
 //---Class Description---
-//
+//contains the database given in the definition of the problem, as well as the function to solve the problem
+
 public class Database {
 	Companies[] DB = new Companies[10];
 	
-	Database() { //declaration
+	Database() { //declaration of the sample data given in the definition of the problem
 		DB[0]= new Companies(1,1,"A");
 		DB[1]= new Companies(2,5,"B");
 		DB[2]= new Companies(3,8,"C");
@@ -20,7 +21,8 @@ public class Database {
 		DB[9]= new Companies(10,30,"J");
 	}
 	
-	Companies findBestHelper(Companies sol, int inx, int amnt) {
+	Companies findBestHelper(Companies sol, int inx, int amnt) { //recursive function to find best solution
+		//a solution was found
 		if(sol.quant<=amnt)
 			return sol;
 		//unwanted exception 
@@ -30,6 +32,7 @@ public class Database {
 		Companies sol1 = findBestHelper(sol, inx-1,amnt);
 		//find best solution after removing company at current index
 		Companies sol2 = findBestHelper(sol.subtract(sol,DB[inx]),inx-1,amnt);
+		//return better solution of the two
 		if(sol1.prc>sol2.prc)
 			return sol1;
 		else
@@ -43,7 +46,7 @@ public class Database {
 		int pSum = DB[0].prc+DB[1].prc+DB[2].prc+DB[3].prc+DB[4].prc+DB[5].prc+DB[6].prc+DB[7].prc+DB[8].prc+DB[9].prc;
 		//companies with sums
 		Companies sum = new Companies(qSum, pSum, "");
-		findBestHelper(sum,9,amnt).printCompany();
+		findBestHelper(sum,9,amnt).specialPrintCompany();
 	}
 	
 }
